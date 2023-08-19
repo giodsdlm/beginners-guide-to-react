@@ -4,11 +4,19 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    const rootElement = document.getElementById('root')
-    const children = 'Hello World'
-    const className = 'container'
-    const props = {children, className}
-    const element = <div {...props} />
-    ReactDOM.render(element, rootElement)
+    const rootElement = document.getElementById("root");
+    // Children and other props can be stored into variables and either passed spread onto the element
+    // and also can be passed as direct properties with the spread props
+    // the order of precedence are interpreted by the actual order of the props
+    const children = "Hello World";
+    const className = "container";
+    const style = { backgroundColor: "darkslategrey", color: "pink" };
+    const props = { children, className, style };
+    const element = <div id="app-root" {...props} className={"no-container"} />;
+    // for the element above the id will be added,
+    // both the style and className 'container' of inside the 'props' object will be passed along
+    // but will be overwritten by the 'no-container' value since it's written after the props spread
+
+    ReactDOM.render(element, rootElement);
   </script>
 </body>
